@@ -6,21 +6,14 @@ import Signup from './Components/Signup';
 import Brainrot from "./Components/Brainrot";
 import Home from './Pages/Home';
 import Session from './Components/Session';
-
-const THEMES = ['dark', 'light', 'colorblind'];
-
-function getInitialTheme() {
-  const stored = localStorage.getItem('theme');
-  if (!THEMES.includes(stored)) return 'dark';
-  return stored;
-}
+import Nutrition from './Components/Nutrition';
+import { getInitialTheme, applyTheme, changeTheme } from './Utils/theme';
 
 function App() {
   const [theme, setTheme] = useState(getInitialTheme);
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+    applyTheme(theme);
   }, [theme]);
 
   return (
@@ -47,15 +40,21 @@ function App() {
           >
             Brainrot
           </NavLink>
+          <NavLink
+            to="/nutrition"
+          >
+            Nutrition
+          </NavLink>
         </nav>
 
         <div>
           <Routes>
-            <Route path="/" element={<Home theme={theme} setTheme={setTheme} />} />
+            <Route path="/" element={<Home theme={theme} setTheme={(next) => changeTheme(next, setTheme)} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/brainrot" element={<Brainrot />} />
             <Route path="/session" element={<Session />} />
+            <Route path="/nutrition" element={<Nutrition />} />
           </Routes>
         </div>
       </div>

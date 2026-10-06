@@ -42,7 +42,7 @@ export default function Nutrition() {
           <div 
             key={item.id} 
             style={{ 
-              border: '1px solid #ddd', 
+              border: '1px solid var(--text-faint)',
               borderRadius: '8px', 
               padding: '16px', 
               display: 'flex', 
@@ -52,15 +52,15 @@ export default function Nutrition() {
           >
             <div>
               <h3 style={{ margin: '0 0 6px 0' }}>{item.name}</h3>
-              <span style={{ fontSize: '0.9rem', color: '#555' }}>
+              <span style={{ fontSize: '0.9rem', color: 'var(--text-soft)' }}>
                 Serving Size: {item.servingSize} | Category: {item.category}
               </span>
             </div>
             <div style={{ textAlign: 'right' }}>
-              <span style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#2e7d32' }}>
+              <span style={{ fontSize: '1.25rem', fontWeight: 'bold', color: 'var(--accent-3)' }}>
                 {item.proteinGrams}g
               </span>
-              <div style={{ fontSize: '0.8rem', color: '#777' }}>Protein</div>
+              <div style={{ fontSize: '0.8rem', color: 'var(--text-soft)' }}>Protein</div>
             </div>
           </div>
         ))}

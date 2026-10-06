@@ -42,7 +42,7 @@
 .begin-card{ flex:0 0 320px; align-items:center; text-align:center; padding:1rem; box-shadow:0 10px 40px var(--shadow); }
 .begin-card .card-title{ font-size:1.1rem; }
 .begin-card .card-sub{ color: color-mix(in srgb, var(--text) 80%, transparent); }
-.begin-card .begin-button{ background: linear-gradient(90deg,var(--accent-1), var(--accent-2)); color:#fff; border:none; padding:0.9rem 1.25rem; border-radius:12px; cursor:pointer; font-weight:700; box-shadow:0 8px 36px var(--shadow), 0 0 30px color-mix(in srgb, var(--accent-1) 12%, transparent); }
+.begin-card .begin-button{ background: linear-gradient(90deg,var(--accent-1), var(--accent-2)); color:var(--button-text); border:none; padding:0.9rem 1.25rem; border-radius:12px; cursor:pointer; font-weight:700; box-shadow:0 8px 36px var(--shadow), 0 0 30px color-mix(in srgb, var(--accent-1) 12%, transparent); }
 .begin-card .begin-button:hover{ transform:translateY(-3px); }
 
 /* smaller less-noticeable links */
@@ -58,7 +58,7 @@
 .neon-green{ border:1px solid var(--accent-3); box-shadow:0 0 10px color-mix(in srgb, var(--accent-3) 5%, transparent); }
 
 /* auth pages use a smaller button style */
-.auth-begin-button{ background:var(--accent-1); padding:0.55rem 0.9rem; border-radius:8px; border:none; color:#fff; cursor:pointer; }
+.auth-begin-button{ background:var(--accent-1); padding:0.55rem 0.9rem; border-radius:8px; border:none; color:var(--button-text); cursor:pointer; }
 
 .home-footer{ margin-top:1.5rem; color:var(--text-faint); text-align:center; }
 
@@ -98,4 +98,9 @@
     outline: 2px solid var(--accent-1);
     outline-offset: 2px;
   }
-.begin-button.text {color: #fff !important;}
+.begin-button.text {color: var(--button-text) !important;}
+/* dark label on light accents, the glow just blurs it */
+[data-theme="colorblind"] .begin-button.text {
+  -webkit-text-stroke: 0;
+  text-shadow: none !important;
+}
