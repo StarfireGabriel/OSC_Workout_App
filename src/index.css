@@ -3,6 +3,7 @@
   1) Dark - DEFAULT
 */
 :root {
+  --bg-base: #000;
   --bg: radial-gradient(circle at 10% 10%, #021026 0%, #000 60%);
   --text: #eaf6ff;
   --text-heading: #ffffff;
@@ -16,14 +17,15 @@
   --accent-3: #00e08a; /*GREEN*/
   --text-glow: #ea1203;
   --button-glow: #1cd34d;
-  --swiper-theme-color: var(--accent-1);
   --on-accent: #000;
+  --button-text: #fff;
 }
 
 /*
   2) Light
 */
 [data-theme="light"] {
+  --bg-base: #fff;
   --bg: radial-gradient(circle at 10% 10%, #e8f3ff 0%, #ffffff 60%);
   --text: #0b1a2b;
   --text-heading: #000c1a;
@@ -38,23 +40,31 @@
   --text-glow: transparent;
   --button-glow: rgba(0, 119, 204, 0.35);
   --on-accent: #fff;
+  --button-text: #fff;
 }
 
 /*
-  3) Colorblind - DARK BASE BUT R/G = O/Y
+  3) Colorblind - DARK BASE BUT R/G = O/BG
 */
 [data-theme="colorblind"] {
   --accent-1: #56b4e9;
   --accent-2: #e69f00; /* Orange instead of red*/
-  --accent-3: #f0e442; /* Yellow instead of green*/
+  --accent-3: #009e73; /* Bluish green instead of green (yellow was too close to the orange for deuteranopia) */
   --text-glow: #e69f00;
   --button-glow: #56b4e9;
   --on-accent: #000;
+  --button-text: #000; /* white on these accents is only 2.3:1 */
 }
 
 /*************** = ALREADY IN PROGRAM = ****************/
+/* so the page isn't white before the app loads (body needs a height for the gradient to show) */
+html {
+  background-color: var(--bg-base);
+}
+
 body {
   margin: 0;
+  min-height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -68,4 +78,16 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* longer than the 0.3s color transitions so they finish under the cross-fade */
+::view-transition-group(root) {
+  animation-duration: 0.4s;
+}
+
+/* swiper sets its pagination colors on :root, so override them here (inactive dots were invisible on dark) */
+.swiper {
+  --swiper-pagination-color: var(--accent-1);
+  --swiper-pagination-bullet-inactive-color: var(--text);
+  --swiper-pagination-bullet-inactive-opacity: 0.5;
 }

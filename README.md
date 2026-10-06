@@ -88,5 +88,13 @@ The Youtube Data API is used to fetch short videos directly from Youtube. Withou
 
 Congratulations, you have now setup an API key.
 
+## Color themes
+
+The app has three themes: dark (the default look), light, and a colorblind-friendly one for red-green color blindness. Pick one with the toggle on the home page. The choice is saved in the browser, and on a first visit the app follows the OS light/dark setting.
+
+- Colors come from CSS variables in `src/index.css`, one block per theme (`:root` is dark, then `[data-theme="light"]` and `[data-theme="colorblind"]`). Use variables like `var(--text)` and `var(--accent-1)` in new CSS and inline styles instead of hard-coding colors.
+- The theme logic is in `src/Utils/theme.js`. A small script in `public/index.html` applies the saved theme before the first paint, so keep the two in sync (a test checks this).
+- `npm test` checks the contrast of each theme and that the colorblind theme's accent colors stay distinguishable.
+
 For current website deployment you can follow the below link to check it out
 [deployed Site](https://ufosc.github.io/OSC_Workout_App) 
